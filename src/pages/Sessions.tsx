@@ -52,7 +52,32 @@ export default function Sessions() {
         </div>
 
         <div className="mt-5 overflow-auto rounded-2xl panel-surface">
-          <table className="w-full min-w-[520px] text-sm">
+          <div className="sm:hidden divide-y divide-red-900/20">
+            {team.map((member) => {
+              const value = selectedSession ? (attendance[member.id]?.[selectedSession.id] ?? 0) : 0
+              const present = value === 1
+
+              return (
+                <div key={`mobile-${member.id}`} className="p-3 flex items-center justify-between gap-3">
+                  <div className="font-semibold text-zinc-200 leading-snug break-words">{member.name}</div>
+                  <div
+                    className={[
+                      "w-11 h-11 rounded-xl border flex items-center justify-center shrink-0 select-none",
+                      present
+                        ? "bg-red-500 border-red-200 text-black shadow-[0_0_16px_rgba(248,113,113,0.45)]"
+                        : "bg-zinc-950 border-zinc-700 text-zinc-400",
+                    ].join(" ")}
+                    title={`${present ? "Present" : "Absent"} (${value})`}
+                    aria-label={`${present ? "Present" : "Absent"} (${value})`}
+                  >
+                    <span className="text-xl font-black leading-none">{present ? "\u2713" : "\u2715"}</span>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          <table className="hidden sm:table w-full text-sm">
             <thead className="sticky top-0 bg-black/75 backdrop-blur">
               <tr>
                 <th className="p-3 text-left text-zinc-200">Member</th>
