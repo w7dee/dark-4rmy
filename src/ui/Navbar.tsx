@@ -16,6 +16,7 @@ const links: Array<[string, string]> = [
   ["home", "HOME"],
   ["dfir-hub", "DFIR HUB"],
   ["team", "TEAM"],
+  ["partners", "PARTNERS"],
   ["sessions", "SESSIONS"],
 ]
 

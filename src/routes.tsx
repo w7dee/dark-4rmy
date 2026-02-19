@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import DFIRHub from "./pages/DFIRHub"
 import Team from "./pages/Team"
 import Sessions from "./pages/Sessions"
+import Partners from "./pages/Partners"
 
 export const router = createHashRouter([
   { path: "/", element: <Intro /> },
@@ -15,6 +16,7 @@ export const router = createHashRouter([
       { path: "home", element: <Home /> },
       { path: "dfir-hub", element: <DFIRHub /> },
       { path: "team", element: <Team /> },
+      { path: "partners", element: <Partners /> },
       { path: "sessions", element: <Sessions /> },
     ],
   },
