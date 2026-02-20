@@ -10,8 +10,22 @@ export type SessionReport = {
 export const sessionReports: SessionReport[] = [
   {
     sessionId: "s1",
-    taskTitle: "DFIR Starter Task",
-    taskDetails: "Initial triage exercise and documentation of the investigation flow.",
+    taskTitle: "Session 1 Task",
+    taskDetails: `Main Task
+• Packet Life Cycle - tracing data from creation to transmission across
+network layers.
+• Network Devices - roles of Routers, Switches, and Hubs in packet flow
+and investigation.
+• Data Encapsulation - how headers and trailers are added and removed
+across layers.
+• Essential Services - behavior and forensic relevance of DNS and ARP.
+
+Bonus Task
+Difference between TCP vs UDP in investigations
+• Packet fragmentation analysis
+• Port scanning detection techniques
+• DHCP logs analysis
+• NAT and its forensic impact`,
     driveUrl: "https://drive.google.com/",
   },
   {
@@ -69,4 +83,3 @@ export const sessionReports: SessionReport[] = [
     driveUrl: "https://drive.google.com/",
   },
 ]
-

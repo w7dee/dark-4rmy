@@ -49,7 +49,7 @@ export default function Reports() {
             <>
               <div className="text-xs tracking-[0.14em] text-zinc-400 uppercase">Task Information</div>
               <div className="mt-2 text-xl font-extrabold text-red-400">{selectedReport.taskTitle}</div>
-              <div className="mt-3 text-sm text-zinc-300 leading-7">{selectedReport.taskDetails}</div>
+              <div className="mt-3 text-sm text-zinc-300 leading-7 whitespace-pre-line">{selectedReport.taskDetails}</div>
 
               <div className="mt-5">
                 {hasDriveUrl ? (
@@ -82,4 +82,3 @@ export default function Reports() {
     </div>
   )
 }
-

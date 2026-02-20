@@ -23,9 +23,19 @@ export default function Partners() {
   return (
     <div className="space-y-6">
       <Section title="Partners">
-        <div className="text-zinc-300">
-          DFIR HUB includes 20 teams. Team partnerships are allowed to support specific missions, collaborate
-          effectively, and earn points together.
+        <div className="space-y-3 text-zinc-300">
+          <p>
+            We are a team that truly values collaboration and believes that working together is one of the most
+            powerful ways to grow and achieve better results.
+          </p>
+          <p>
+            Because of that, we decided to launch our Partnership Program, which is designed to help our team continue
+            evolving while also creating real value and opportunities for other teams as well.
+          </p>
+          <p>
+            Through this program, we aim to build strong connections, share knowledge, and create a supportive
+            environment where everyone benefits and moves forward together.
+          </p>
         </div>
 
         <div className="mt-5 rounded-2xl border border-red-900/35 bg-black/35 px-4 py-4">
@@ -98,4 +108,3 @@ export default function Partners() {
     </div>
   )
 }
-
