@@ -18,6 +18,7 @@ const links: Array<[string, string]> = [
   ["team", "TEAM"],
   ["partners", "PARTNERS"],
   ["sessions", "SESSIONS"],
+  ["reports", "REPORTS"],
 ]
 
 export default function Navbar() {
