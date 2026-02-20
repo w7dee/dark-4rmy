@@ -6,7 +6,7 @@ import DFIRHub from "./pages/DFIRHub"
 import Team from "./pages/Team"
 import Sessions from "./pages/Sessions"
 import Partners from "./pages/Partners"
-import Reports from "./pages/Reports"
+import Tasks from "./pages/Reports"
 
 export const router = createHashRouter([
   { path: "/", element: <Intro /> },
@@ -19,7 +19,7 @@ export const router = createHashRouter([
       { path: "team", element: <Team /> },
       { path: "partners", element: <Partners /> },
       { path: "sessions", element: <Sessions /> },
-      { path: "reports", element: <Reports /> },
+      { path: "tasks", element: <Tasks /> },
     ],
   },
 ])

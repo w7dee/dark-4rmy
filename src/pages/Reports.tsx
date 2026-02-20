@@ -20,7 +20,7 @@ export default function Reports() {
 
   return (
     <div className="space-y-6">
-      <Section title="Reports">
+      <Section title="Tasks">
         <div className="grid sm:grid-cols-[1fr_auto] gap-4 sm:items-end">
           <label className="block">
             <div className="text-xs text-zinc-400 tracking-[0.12em] mb-2">SELECT SESSION</div>
