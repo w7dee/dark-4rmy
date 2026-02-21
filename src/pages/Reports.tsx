@@ -40,7 +40,7 @@ export default function Reports() {
           <div className="rounded-xl border border-red-900/35 bg-black/35 px-4 py-3 text-sm text-zinc-300 shadow-glow">
             <div className="font-semibold text-zinc-100">{selectedSession?.title ?? "Session"}</div>
             {selectedSession?.date && <div className="text-xs text-zinc-500 mt-1">{selectedSession.date}</div>}
-            <div className="mt-2 text-zinc-400">Task report and PDF link</div>
+            <div className="mt-2 text-zinc-400">Network Forensics</div>
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export default function Reports() {
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-xl border border-red-800/45 bg-black/40 px-4 py-2 text-sm text-red-300 hover:text-red-200 hover:border-red-500/60 transition-all"
                   >
-                    Open Report PDF on Drive
+                    Open Task PDF
                   </a>
                 ) : (
                   <button
