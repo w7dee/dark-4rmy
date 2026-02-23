@@ -11,6 +11,11 @@ const sessionOneAllPresentExceptAhmedHany: AttendanceOverrides = Object.fromEntr
 
 const attendanceOverrides: AttendanceOverrides = {
   ...sessionOneAllPresentExceptAhmedHany,
+  m1: { ...(sessionOneAllPresentExceptAhmedHany.m1 ?? {}), s2: 1 },
+  m2: { ...(sessionOneAllPresentExceptAhmedHany.m2 ?? {}), s2: 1 },
+  m3: { ...(sessionOneAllPresentExceptAhmedHany.m3 ?? {}), s2: 1 },
+  m5: { ...(sessionOneAllPresentExceptAhmedHany.m5 ?? {}), s2: 1 },
+  m7: { ...(sessionOneAllPresentExceptAhmedHany.m7 ?? {}), s2: 1 },
 }
 
 export const attendance: AttendanceMap = Object.fromEntries(
