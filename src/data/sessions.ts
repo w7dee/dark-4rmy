@@ -2,7 +2,7 @@ export type Session = { id: string; title: string; date?: string }
 
 export const sessions: Session[] = [
   { id: "s1", title: "Session 1", date: "2026-02-16" },
-  { id: "s2", title: "Session 2", date: "2026-02-05" },
+  { id: "s2", title: "Session 2", date: "2026-02-23" },
   { id: "s3", title: "Session 3", date: "2026-02-09" },
   { id: "s4", title: "Session 4", date: "2026-02-12" },
   { id: "s5", title: "Session 5", date: "2026-02-15" },
