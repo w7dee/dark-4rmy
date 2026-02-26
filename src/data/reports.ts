@@ -32,7 +32,7 @@ Bonus Task
     sessionId: "s2",
     taskTitle: "No Data",
     taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    driveUrl: "https://medium.com/@w7dee/team-dark-4rmy-laps-b1aab7b0dbe7",
   },
   {
     sessionId: "s3",
@@ -83,4 +83,3 @@ Bonus Task
     driveUrl: "https://drive.google.com/",
   },
 ]
-
