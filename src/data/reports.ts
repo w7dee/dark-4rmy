@@ -1,17 +1,22 @@
-export type SessionReport = {
-  sessionId: string
-  taskTitle: string
-  taskDetails: string
-  driveUrl: string
+export type TaskEntry = {
+  title: string
+  details: string
+  url: string
 }
 
-// Edit reports from this file only.
-// Put the Google Drive folder/file link in driveUrl for each session.
+export type SessionReport = {
+  sessionId: string
+  tasks: TaskEntry[]
+}
+
+// Edit tasks from this file only.
 export const sessionReports: SessionReport[] = [
   {
     sessionId: "s1",
-    taskTitle: "Session 1 Task",
-    taskDetails: `Main Task
+    tasks: [
+      {
+        title: "Session 1 Task",
+        details: `Main Task
 - Packet Life Cycle - tracing data from creation to transmission across
 network layers.
 - Network Devices - roles of Routers, Switches, and Hubs in packet flow
@@ -26,12 +31,16 @@ Bonus Task
 - Port scanning detection techniques
 - DHCP logs analysis
 - NAT and its forensic impact`,
-    driveUrl: "https://drive.google.com/file/d/1OUDwfE8_by3zrn4jyoToqKTneHk_yhRc/view?usp=sharing",
+        url: "https://drive.google.com/file/d/1OUDwfE8_by3zrn4jyoToqKTneHk_yhRc/view?usp=sharing",
+      },
+    ],
   },
   {
     sessionId: "s2",
-    taskTitle: "Session 2 Task",
-    taskDetails: `3 labs in the Network Forensics section
+    tasks: [
+      {
+        title: "Session 2 Task 1",
+        details: `3 labs in the Network Forensics section
 
 Lab1
 1 - What is the name of this attack ?
@@ -69,54 +78,72 @@ Lab3
 8 - How many files were inside that folder?
 9 - Which network protocol was used by the attacker to exfiltrate the data?
 10 - When did the last communication between the attacker and the victim occur?`,
-    driveUrl: "https://medium.com/@w7dee/team-dark-4rmy-laps-b1aab7b0dbe7",
+        url: "https://medium.com/@w7dee/team-dark-4rmy-laps-b1aab7b0dbe7",
+      },
+      {
+        title: "Session 2 Task 2",
+        details: `Case Study: Operation "Silent Exit"
+Case Background: During a routine network audit at "Tech-Safe Solutions," the SOC team
+flagged suspicious outbound traffic originating from a workstation belonging to an
+employee named "Ahmed" (Workstation-01). The traffic was captured in a PCAP file. As a
+forensic analyst at the Digital Forensics HUB, your task is to analyze the capture and
+answer the following investigative questions to determine the nature of this activity.
+
+Level 1: Basic Network Identification
+1. Source IP Address: Identify the IP address of the victim's machine that initiated the connection.
+2. Destination IP Address: Identify the IP address of the suspicious external receiver (the attacker).
+3. Source Port: What was the ephemeral port opened by the victim's machine?
+4. Destination Port: What specific port number was the attacker listening on?
+5. Protocol: What transport layer protocol was used for this data transfer?
+
+Level 2: Data & Packet Analysis
+6. Handshake Analysis: Was the connection successfully established? Provide the relative sequence numbers for the SYN, SYN-ACK, and ACK packets.
+7. Data Volume: Calculate the total volume of data (in Kilobytes) exfiltrated during this specific TCP stream.
+8. File Signature (Magic Bytes): Analyze the TCP Stream. What are the first two bytes (Hex/ASCII) of the data payload? What file type does this signature represent?
+9. Embedded Artifacts: Within the stream, can you find any clear-text strings? List at least three filenames that were contained inside the exfiltrated archive.
+10. Timing: How long did the entire exfiltration process take, from the initial handshake to the connection termination (FIN/RST)?
+
+Level 3: Forensic Reasoning & Logic
+11. Attack Vector: Based on the destination port and the behavior, do you believe this was standard web browsing (HTTP/S) or a custom script? Justify your answer.
+12. Detection Evasion: If the attacker had used port 443 instead of 4444, how would you distinguish this malicious traffic from legitimate HTTPS traffic?
+13. Data Integrity: If you attempted to recover the file but it appeared "corrupted," what network-level events (e.g., packet loss, retransmissions) could explain this?
+14. Fileless Context: If no files were found on the hard drive, but the network capture shows data leaving the machine, what does this suggest about the execution method? (Think about memory-resident scripts).
+15. The "Smoking Gun": What is the most critical piece of evidence in this PCAP that proves "Data Theft" occurred`,
+        url: "https://medium.com/@w7dee/team-dark-4rmy-task-2-fa904e8d9467",
+      },
+    ],
   },
   {
     sessionId: "s3",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s4",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s5",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s6",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s7",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s8",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s9",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
   {
     sessionId: "s10",
-    taskTitle: "No Data",
-    taskDetails: "No Data",
-    driveUrl: "https://drive.google.com/",
+    tasks: [{ title: "No Data", details: "No Data", url: "" }],
   },
 ]
+
