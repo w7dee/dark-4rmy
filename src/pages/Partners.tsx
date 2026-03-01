@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import { useState, type FormEvent } from "react"
 import Section from "../ui/Section"
 import { partners } from "../data/partners"
 
@@ -9,9 +10,15 @@ const rules = [
   "The team must show clear activity inside the community.",
 ]
 
-const leaderPhone = "01080841930"
-const leaderWhatsApp = "201080841930"
 const fallbackLogo = `${import.meta.env.BASE_URL}assets/logo.png`
+const webhookUrl =
+  "https://discord.com/api/webhooks/1477739885929566351/v2q0ZYAPjrqXYYvQom3Xb-M7GdyocHvPh1zJKFCG0AzoN1kGETdxxrgDEEoimHGJG1L8"
+
+type RequestForm = {
+  teamName: string
+  leaderPhone: string
+  topic: string
+}
 
 function resolveLogoSrc(logo?: string) {
   if (!logo) return fallbackLogo
@@ -20,6 +27,48 @@ function resolveLogoSrc(logo?: string) {
 }
 
 export default function Partners() {
+  const [form, setForm] = useState<RequestForm>({
+    teamName: "",
+    leaderPhone: "",
+    topic: "",
+  })
+  const [status, setStatus] = useState<"idle" | "submitting" | "submitted" | "error">("idle")
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setStatus("submitting")
+
+    const payload = {
+      content: [
+        "New Partnership Request",
+        `Team Name: ${form.teamName}`,
+        `Leader Phone Number: ${form.leaderPhone}`,
+        `Partnership Topic: ${form.topic}`,
+      ].join("\n"),
+    }
+
+    const formData = new FormData()
+    formData.append("payload_json", JSON.stringify(payload))
+
+    try {
+      // This keeps the frontend static, but the webhook remains public in client-side code.
+      await fetch(webhookUrl, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+      })
+
+      setForm({
+        teamName: "",
+        leaderPhone: "",
+        topic: "",
+      })
+      setStatus("submitted")
+    } catch {
+      setStatus("error")
+    }
+  }
+
   return (
     <div className="space-y-6">
       <Section title="Partners">
@@ -56,17 +105,65 @@ export default function Partners() {
         </div>
 
         <div className="mt-4 rounded-2xl border border-red-900/35 bg-black/35 px-4 py-4 text-sm text-zinc-300">
-          <div className="font-semibold text-zinc-100">Communication</div>
-          <div className="mt-2">Communication is handled through the team leader via WhatsApp.</div>
-          <div className="mt-2">Phone Number: {leaderPhone}</div>
-          <a
-            href={`https://wa.me/${leaderWhatsApp}`}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-3 inline-flex items-center gap-2 rounded-xl border border-red-800/45 bg-black/40 px-4 py-2 text-sm text-red-300 hover:text-red-200 hover:border-red-500/60 transition-all"
-          >
-            Open WhatsApp
-          </a>
+          <div className="font-semibold text-zinc-100">Partnership Request</div>
+          <div className="mt-2 text-zinc-400">
+            Fill in the form below. Your request will be sent directly to our Discord review channel.
+          </div>
+
+          <form onSubmit={handleSubmit} className="mt-4 grid gap-4">
+            <label className="block">
+              <div className="mb-2 text-xs tracking-[0.12em] text-zinc-400 uppercase">Team Name</div>
+              <input
+                type="text"
+                value={form.teamName}
+                onChange={(event) => setForm((current) => ({ ...current, teamName: event.target.value }))}
+                required
+                className="w-full rounded-xl border border-red-800/45 bg-black/45 px-4 py-3 text-zinc-100 outline-none focus:border-red-400 transition-colors"
+                placeholder="Enter your team name"
+              />
+            </label>
+
+            <label className="block">
+              <div className="mb-2 text-xs tracking-[0.12em] text-zinc-400 uppercase">Leader Phone Number</div>
+              <input
+                type="tel"
+                value={form.leaderPhone}
+                onChange={(event) => setForm((current) => ({ ...current, leaderPhone: event.target.value }))}
+                required
+                className="w-full rounded-xl border border-red-800/45 bg-black/45 px-4 py-3 text-zinc-100 outline-none focus:border-red-400 transition-colors"
+                placeholder="Enter the leader phone number"
+              />
+            </label>
+
+            <label className="block">
+              <div className="mb-2 text-xs tracking-[0.12em] text-zinc-400 uppercase">Partnership Topic</div>
+              <textarea
+                value={form.topic}
+                onChange={(event) => setForm((current) => ({ ...current, topic: event.target.value }))}
+                required
+                rows={5}
+                className="w-full rounded-xl border border-red-800/45 bg-black/45 px-4 py-3 text-zinc-100 outline-none focus:border-red-400 transition-colors resize-y"
+                placeholder="Describe the subject you want to collaborate on"
+              />
+            </label>
+
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="inline-flex items-center justify-center rounded-xl border border-red-700/55 bg-red-600/90 px-4 py-3 text-sm font-semibold text-black transition-colors hover:bg-red-500 disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                {status === "submitting" ? "Sending..." : "Send Request"}
+              </button>
+
+              {status === "submitted" && (
+                <div className="text-sm text-emerald-300">Request submitted.</div>
+              )}
+              {status === "error" && (
+                <div className="text-sm text-red-300">Request failed. Try again.</div>
+              )}
+            </div>
+          </form>
         </div>
       </Section>
 
