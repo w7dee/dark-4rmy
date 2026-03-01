@@ -20,6 +20,18 @@ type RequestForm = {
   topic: string
 }
 
+async function getPublicIp() {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json")
+    if (!response.ok) return "Unavailable"
+
+    const data = (await response.json()) as { ip?: string }
+    return data.ip?.trim() || "Unavailable"
+  } catch {
+    return "Unavailable"
+  }
+}
+
 function resolveLogoSrc(logo?: string) {
   if (!logo) return fallbackLogo
   if (logo.startsWith("http://") || logo.startsWith("https://")) return logo
@@ -38,13 +50,39 @@ export default function Partners() {
     event.preventDefault()
     setStatus("submitting")
 
+    const senderIp = await getPublicIp()
+
     const payload = {
-      content: [
-        "New Partnership Request",
-        `Team Name: ${form.teamName}`,
-        `Leader Phone Number: ${form.leaderPhone}`,
-        `Partnership Topic: ${form.topic}`,
-      ].join("\n"),
+      username: "DARK-4RMY Partner Bot",
+      embeds: [
+        {
+          title: "New Partnership Request",
+          color: 15158332,
+          fields: [
+            {
+              name: "Team Name",
+              value: form.teamName,
+              inline: false,
+            },
+            {
+              name: "Leader Phone Number",
+              value: form.leaderPhone,
+              inline: false,
+            },
+            {
+              name: "Partnership Topic",
+              value: form.topic,
+              inline: false,
+            },
+            {
+              name: "Sender IP",
+              value: senderIp,
+              inline: false,
+            },
+          ],
+          timestamp: new Date().toISOString(),
+        },
+      ],
     }
 
     const formData = new FormData()
@@ -126,10 +164,18 @@ export default function Partners() {
             <label className="block">
               <div className="mb-2 text-xs tracking-[0.12em] text-zinc-400 uppercase">Leader Phone Number</div>
               <input
-                type="tel"
+                type="text"
                 value={form.leaderPhone}
-                onChange={(event) => setForm((current) => ({ ...current, leaderPhone: event.target.value }))}
+                onChange={(event) =>
+                  setForm((current) => ({
+                    ...current,
+                    leaderPhone: event.target.value.replace(/\D/g, ""),
+                  }))
+                }
                 required
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={15}
                 className="w-full rounded-xl border border-red-800/45 bg-black/45 px-4 py-3 text-zinc-100 outline-none focus:border-red-400 transition-colors"
                 placeholder="Enter the leader phone number"
               />
