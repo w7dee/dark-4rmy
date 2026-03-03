@@ -227,22 +227,20 @@ export default function Partners() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.06 }}
                 whileHover={{ y: -3 }}
-                className="rounded-2xl panel-surface card-lift p-5"
+                className="rounded-2xl panel-surface card-lift p-6 sm:p-7 min-h-[280px] flex flex-col"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center text-center">
                   <img
                     src={resolveLogoSrc(partner.logo)}
                     alt={`${partner.name} logo`}
-                    className="w-16 h-16 rounded-full object-cover border border-red-800/45 shadow-glow shrink-0"
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border border-red-800/45 shadow-glow shrink-0"
                   />
-                  <div className="min-w-0">
-                    <div className="text-xs tracking-[0.12em] text-zinc-400 uppercase">Partner Team</div>
-                    <div className="mt-1 text-base font-extrabold text-red-400 break-words">{partner.name}</div>
-                  </div>
+                  <div className="mt-4 text-xs tracking-[0.12em] text-zinc-400 uppercase">Partner Team</div>
+                  <div className="mt-1 text-lg font-extrabold text-red-400 break-words">{partner.name}</div>
                 </div>
 
-                <div className="mt-4 text-xs tracking-[0.12em] text-zinc-500 uppercase">Support Report</div>
-                <div className="mt-2 text-sm text-zinc-300">{partner.supportReport}</div>
+                <div className="mt-5 text-xs tracking-[0.12em] text-zinc-500 uppercase text-center">Support Report</div>
+                <div className="mt-2 text-sm text-zinc-300 text-center leading-7">{partner.supportReport}</div>
               </motion.div>
             ))}
           </div>
