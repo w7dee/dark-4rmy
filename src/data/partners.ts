@@ -9,5 +9,11 @@ export type Partner = {
 // logo accepts:
 // - local asset path from public folder, e.g. "assets/partner-logo.png"
 // - full URL, e.g. "https://example.com/logo.png"
-export const partners: Partner[] = []
-
+export const partners: Partner[] = [
+  {
+    id: "p1",
+    name: "CodeX",
+    logo: "assets/Codex.png",
+    supportReport: "We supported them in solving Task 2.",
+  },
+]
